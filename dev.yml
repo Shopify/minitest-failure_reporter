@@ -1,0 +1,14 @@
+name: minitest-failure-reporter
+
+type: ruby
+
+up:
+  - ruby: 2.7.1
+  - bundler
+
+commands:
+  test:
+    syntax:
+      argument: file
+      optional: args...
+    run: rake
