@@ -1,8 +1,21 @@
-# MinitestFailure::Reporter
+# Minitest::FailureReporter
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/minitest_failure/reporter`. To experiment with that code, run `bin/console` for an interactive prompt.
+Generates a json file that includes test failures and is compatible with ci-queue's failure file.
 
-TODO: Delete this and the text above, and describe your gem
+The format of the file looks as follows:
+
+```ruby
+[{
+  test_file: String,
+  test_line: Int,
+  test_and_module_name: String,
+  test_name: String,
+  test_suite: String,
+  error_class: String,
+  error_message: String,
+  output: String,
+}]
+```
 
 ## Installation
 
@@ -22,7 +35,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+--failure-reporter # Generate a failure json report
+--failure-reporter-filename=OUT # Target output filename. Defaults to failure_file.json
+```
 
 ## Development
 
@@ -32,7 +48,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/minitest_failure-reporter.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Shopify/minitest_failure-reporter.
 
 
 ## License
