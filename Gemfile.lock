@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    minitest-failure-reporter (0.1.0)
+    minitest-failure-reporter (0.1.1)
       minitest (~> 5.0)
 
 GEM
@@ -16,7 +16,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.1)
-  byebug
+  byebug (~> 11.1)
   minitest-failure-reporter!
   rake (~> 12.3)
 
