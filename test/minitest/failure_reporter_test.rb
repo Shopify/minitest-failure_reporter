@@ -23,7 +23,7 @@ class Minitest::FailureReporterTest < Minitest::Test
     10.times.map do |i|
       result = create_test_result("test_name#{i}")
       if i % 2 == 0
-        result.failures << create_error(Minitest::Skip)
+        result.failures << create_error(StandardError)
       end
       reporter.record result
       result
@@ -34,11 +34,20 @@ class Minitest::FailureReporterTest < Minitest::Test
     assert_equal 5, JSON.parse(reporter.output).count
   end
 
-  # foo
+  def test_formats_ignores_skip
+    reporter = create_reporter
+    result = create_test_result("test_name")
+    result.failures << create_error(Minitest::Skip)
+    reporter.record(result)
+
+    reporter.report
+
+    assert_equal 0, JSON.parse(reporter.output).count
+  end
 
   def test_all_tests_generate_testcase_tag
     test = create_test_result
-    test.failures << create_error(Minitest::Skip)
+    test.failures << create_error(StandardError)
     reporter = create_reporter
 
     result = reporter.format(test)

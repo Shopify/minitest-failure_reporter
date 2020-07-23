@@ -29,9 +29,9 @@ module Minitest
       def format(test)
         test_file, test_line = test.source_location
         {
-          test_file: test_file,
+          test_file_path: test_file,
           test_line: test_line,
-          test_and_module_name: "#{test.klass}##{test.name}",
+          test_id: "#{test.klass}##{test.name}",
           test_name: test.name,
           test_suite: test.klass,
           error_class: test.failure.exception.class.name,
@@ -43,6 +43,8 @@ module Minitest
       private
 
       def has_failures?(test)
+        return false if test.skipped?
+
         !test.failures.empty? || test.error?
       end
 

@@ -1,14 +1,14 @@
 # Minitest::FailureReporter
 
-Generates a json file that includes test failures and is compatible with ci-queue's failure file.
+Generates a json file that includes test failures.
 
 The format of the file looks as follows:
 
 ```ruby
 [{
-  test_file: String,
+  test_file_path: String,
   test_line: Int,
-  test_and_module_name: String,
+  test_id: String,
   test_name: String,
   test_suite: String,
   error_class: String,
