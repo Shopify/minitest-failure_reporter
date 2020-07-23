@@ -6,9 +6,9 @@ The format of the file looks as follows:
 
 ```ruby
 [{
-  test_file_path: String,
+  test_file: String,
   test_line: Int,
-  test_id: String,
+  test_and_module_name: String,
   test_name: String,
   test_suite: String,
   error_class: String,
