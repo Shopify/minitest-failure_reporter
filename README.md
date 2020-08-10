@@ -22,7 +22,7 @@ The format of the file looks as follows:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'minitest_failure-reporter'
+gem 'minitest-failure-reporter'
 ```
 
 And then execute:
@@ -31,7 +31,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install minitest_failure-reporter
+    $ gem install minitest-failure-reporter
 
 ## Usage
 
