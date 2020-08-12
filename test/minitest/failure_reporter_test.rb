@@ -34,6 +34,16 @@ class Minitest::FailureReporterTest < Minitest::Test
     assert_equal 5, JSON.parse(reporter.output).count
   end
 
+  def test_formats_normalizes_test_file_path
+    test = create_test_result
+    test.failures << create_error(StandardError)
+    reporter = create_reporter
+
+    result = reporter.format(test)
+
+    assert_equal('test/minitest/failure_reporter_test.rb', result[:test_file_path])
+  end
+
   def test_formats_ignores_skip
     reporter = create_reporter
     result = create_test_result("test_name")
@@ -64,14 +74,14 @@ class Minitest::FailureReporterTest < Minitest::Test
   end
 
   def create_test_result(name = 'ATestClass')
-    test = Class.new Minitest::Test do
-      # define_method 'class' do
-      #   self
-      # end
-    end.new 'test_method_name'
+    test = Minitest::Test.new('test_method_name')
     test.time = a_number
     test.assertions = a_number
-    Minitest::Result.from(test)
+    res = Minitest::Result.from(test)
+    def res.source_location
+      [__FILE__, 80]
+    end
+    res
   end
 
   def a_number
