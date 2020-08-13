@@ -1,4 +1,5 @@
 require 'json'
+require 'pathname'
 
 module Minitest
   module FailureReporter
@@ -29,7 +30,7 @@ module Minitest
       def format(test)
         test_file, test_line = test.source_location
         {
-          test_file_path: test_file,
+          test_file_path: normalize_file_path(test_file),
           test_line: test_line,
           test_id: "#{test.klass}##{test.name}",
           test_name: test.name,
@@ -41,6 +42,11 @@ module Minitest
       end
 
       private
+
+      def normalize_file_path(file_path)
+        project_root  = Pathname.new(Dir.pwd)
+        Pathname.new(file_path).relative_path_from(project_root).to_s
+      end
 
       def has_failures?(test)
         return false if test.skipped?
