@@ -3,7 +3,7 @@ name: minitest-failure-reporter
 type: ruby
 
 up:
-  - ruby: 2.7.1
+  - ruby
   - bundler
 
 commands:
