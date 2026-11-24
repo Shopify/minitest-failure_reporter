@@ -1,3 +1,6 @@
+> [!WARNING]
+> This gem is no longer maintained.
+
 # Minitest::FailureReporter
 
 Generates a json file that includes test failures.
